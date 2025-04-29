@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Vehículos Registrados</title></head>
+<body>
+<h2>Vehículos en el Parqueadero</h2>
+<table border="1">
+  <tr>
+    <th>Placa</th>
+    <th>Hora Entrada</th>
+    <th>Hora Salida</th>
+  </tr>
+  <tr th:each="vehiculo : ${vehiculos}">
+    <td th:text="${vehiculo.placa}"></td>
+    <td th:text="${vehiculo.horaEntrada}"></td>
+    <td th:text="${vehiculo.horaSalida != null ? vehiculo.horaSalida : 'En parqueadero'}"></td>
+  </tr>
+</table>
+</body>
+</html>

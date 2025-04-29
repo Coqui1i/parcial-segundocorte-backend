@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Acomodador</title></head>
+<body>
+<h2>Bienvenido Acomodador</h2>
+<table border="1">
+  <tr>
+    <th>Placa</th>
+    <th>Ubicación actual</th>
+    <th>Actualizar ubicación</th>
+  </tr>
+  <tr th:each="vehiculo : ${vehiculos}">
+    <form th:action="@{/acomodador/actualizar}" method="post">
+      <input type="hidden" name="placa" th:value="${vehiculo.placa}" />
+      <td th:text="${vehiculo.placa}"></td>
+      <td th:text="${vehiculo.ubicacion}"></td>
+      <td>
+        <input type="text" name="ubicacion" />
+        <button type="submit">Actualizar</button>
+      </td>
+    </form>
+  </tr>
+</table>
+</body>
+</html>

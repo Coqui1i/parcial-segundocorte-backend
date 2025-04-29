@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Administrador</title></head>
+<body>
+<h2>Gestión de Vehículos - ADMIN</h2>
+
+<h3>Registrar nuevo vehículo</h3>
+<form th:action="@{/admin/vehiculos}" method="post">
+    <input type="text" name="placa" placeholder="Placa" maxlength="6" required />
+    <input type="number" name="horaEntrada" placeholder="Hora entrada" required />
+    <input type="text" name="ubicacion" placeholder="Ubicación" required />
+    <select name="tipoVehiculoId">
+        <option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+    </select>
+    <button type="submit">Registrar</button>
+</form>
+
+<h3>Vehículos registrados</h3>
+<table border="1">
+    <tr>
+        <th>Placa</th>
+        <th>Hora Entrada</th>
+        <th>Hora Salida</th>
+        <th>Ubicación</th>
+        <th>Acciones</th>
+    </tr>
+    <tr th:each="vehiculo : ${vehiculos}">
+        <td th:text="${vehiculo.placa}"></td>
+        <td th:text="${vehiculo.horaEntrada}"></td>
+        <td th:text="${vehiculo.horaSalida}"></td>
+        <td th:text="${vehiculo.ubication}"></td>
+        <td>
+            <a th:href="@{'/admin/vehiculos/editar/' + ${vehiculo.placa}}">Editar</a> |
+            <a th:href="@{'/admin/vehiculos/eliminar/' + ${vehiculo.placa}}">Eliminar</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
